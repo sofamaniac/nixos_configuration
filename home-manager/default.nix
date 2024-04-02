@@ -4,11 +4,12 @@
   ...
 }: {
   imports = [
-    ./home-manager/picom
-    ./home-manager/zsh
-    ./home-manager/kitty
-    ./home-manager/firefox
-    ./home-manager/dunst
+    ./picom
+    ./zsh
+    ./kitty
+    ./firefox
+    ./dunst
+    ./redshift.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -84,11 +85,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  services.redshift = {
-    enable = true;
-    provider = "geoclue2";
-  };
   services.unclutter = {
     enable = true;
   };

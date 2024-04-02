@@ -53,18 +53,18 @@ in {
 
   networking.hostName = "astolfo"; # Define your hostname.
 
-	# Enabling docker
-	virtualisation.docker.enable = true;
-	users.extraGroups.docker.members = ["sofamaniac"];
-	# Enabling docker rootless mode
-	virtualisation.docker.rootless = {
-		enable = true;
-		setSocketVariable = true;
-	};
+  # Enabling docker
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = ["sofamaniac"];
+  # Enabling docker rootless mode
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
-	# Setting up hardware acceleration
-	nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  # Setting up hardware acceleration
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
   };
   hardware.opengl = {
     enable = true;
@@ -75,5 +75,5 @@ in {
       libvdpau-va-gl
     ];
   };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
 }

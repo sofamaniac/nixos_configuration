@@ -13,7 +13,7 @@
 
   # Compiling the keyboard layout helps catching error in config at build time
   compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${../../../keymaps/azerty} $out
+    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${../keymaps/azerty} $out
   '';
 in {
   # Enabling flakes
@@ -41,6 +41,8 @@ in {
     dates = "14:00";
     randomizedDelaySec = "45min";
   };
+
+	imports = [ ./geoclue2.nix ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -83,9 +85,6 @@ in {
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
   };
-
-  # Enable geoclue2 for redshift
-  services.geoclue2.enable = true;
 
   services.udisks2.enable = true;
 
