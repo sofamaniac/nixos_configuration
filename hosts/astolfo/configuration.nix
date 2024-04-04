@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -19,12 +16,12 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
+    # inputs.home-manager.nixosModules.default
   ];
 
+  networking.hostName = "astolfo"; # Define your hostname.
+
   # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -42,6 +39,8 @@ in {
       enable = true;
     };
   };
+
+	## === Battery charging === ##
   services.tlp = {
     enable = true;
     settings = {
@@ -50,17 +49,19 @@ in {
       STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
     };
   };
+	## ======================== ##
 
-  networking.hostName = "astolfo"; # Define your hostname.
 
-  # Enabling docker
+	## === DOCKER === ##
+
   virtualisation.docker.enable = true;
   users.extraGroups.docker.members = ["sofamaniac"];
-  # Enabling docker rootless mode
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
   };
+
+	## ============== ##
 
   # Setting up hardware acceleration
   nixpkgs.config.packageOverrides = pkgs: {
