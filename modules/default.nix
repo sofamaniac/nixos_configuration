@@ -108,7 +108,7 @@ in {
         theme = "catppuccin-macchiato";
       };
       # setting custom keymap
-      sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
+      # sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
     };
     # Configure keymap in X11
     xkb = {
@@ -191,20 +191,28 @@ in {
     jq
     python3
     ctags
-    # required by YAMA #
-    yt-dlp
-    openssl
-    mpv
-    ffmpeg
-    # ================ #
     home-manager
-    wineWowPackages.stable # wine with 32 and 64 bits support
     xclip # required for clipboard support in vim
     (callPackage ./sddm-catppuccin.nix {}).sddm-catppuccin
     pkgs.catppuccin-gtk
     wget
     unzip
+		keyd
   ];
+
+	# Setting up keyboard
+	services.keyd = {
+		enable = true;
+		keyboards.default.settings = {
+			main = {
+				capslock = "overload(control, esc)";
+				esc = "capslock";
+				f1 = "playpause";
+				f2 = "previoussong";
+				f3 = "nextsong";
+			};
+		};
+	};
 
   # Setting up fonts
   fonts.packages = with pkgs; [
