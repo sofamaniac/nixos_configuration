@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+	dotfiles,
   ...
 }: {
 	# Totally broken for now :(
@@ -13,7 +14,7 @@
 
 	xdg.configFile = {
 		polybar = {
-			source = ./config;
+			source = "${dotfiles}/config/polybar";
 			# onChange = "pkill polybar; ~/.config/polybar/launch_polybar.sh";
 		};
 	};
