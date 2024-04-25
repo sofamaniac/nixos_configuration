@@ -7,7 +7,7 @@
 
 	xdg.configFile = {
 		zathura = {
-			source = ./config;
+			source = ../../dotfiles/config/zathura;
 		};
 	};
 }
