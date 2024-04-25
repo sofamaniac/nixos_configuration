@@ -36,7 +36,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
-            home-manager.users.sofamaniac = ./home-manager;
+            home-manager.users.sofamaniac = ./home-manager/home.nix;
           }
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];

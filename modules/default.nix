@@ -88,7 +88,7 @@ in {
 
   # Tailscale configuration
   services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
+  # services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -198,6 +198,7 @@ in {
     wget
     unzip
 		keyd
+		nh
   ];
 
 	# Setting up keyboard
@@ -254,6 +255,15 @@ in {
   # Enabling zsh
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+	# Setting up nh
+	# programs.nh = {
+	# 	enable = true;
+	# 	flake = "/home/sofamaniac/nixos";
+	# 	clean.enable = true;
+	# 	clean.extraArgs = "--keep-since 7d --keep 10";
+	# };
+
 
   # Gtk theming
   # This next stuff is technically not necessary if you're going to use
