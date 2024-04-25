@@ -38,16 +38,16 @@
   in {
     nixosConfigurations = {
       astolfo = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs dotfiles;};
         modules = [
           ./modules
           ./hosts/astolfo/configuration.nix
 					# Ensure home manager config is rebuilt every time the os config is rebuilt
-          home-manager.nixosModules.home-manager
+          /* home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.users.sofamaniac = ./home-manager/home.nix;
-          }
+          } */
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
