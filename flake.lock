@@ -39,6 +39,22 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713827470,
+        "narHash": "sha256-enibtEgv34RxBp7kMCwyi7T/1s0nBNomSYzeBhs/Rl8=",
+        "owner": "sofamaniac",
+        "repo": "dotfiles",
+        "rev": "5b6802acd71c357e26bb9b1ac1f1067d26dc8f57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sofamaniac",
+        "repo": "dotfiles",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -184,6 +200,7 @@
     "root": {
       "inputs": {
         "alejandra": "alejandra",
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs",
