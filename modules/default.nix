@@ -88,7 +88,16 @@ in {
 
   # Tailscale configuration
   services.tailscale.enable = true;
-  # services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
+  services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
+  # Configuring sddm
+	services.displayManager = {
+		sddm = {
+			enable = true;
+			theme = "catppuccin-macchiato";
+		};
+		# setting custom keymap
+		# sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
+	};
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -100,15 +109,6 @@ in {
         naturalScrolling = true;
         clickMethod = "buttonareas";
       };
-    };
-    # Configuring sddm
-    displayManager = {
-      sddm = {
-        enable = true;
-        theme = "catppuccin-macchiato";
-      };
-      # setting custom keymap
-      # sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
     };
     # Configure keymap in X11
     xkb = {
@@ -161,8 +161,8 @@ in {
     description = "sofamaniac";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      firefox
-      #  thunderbird
+			fastfetch
+    	playerctl
     ];
   };
 
@@ -176,14 +176,11 @@ in {
     fzf
     ripgrep
     rustup
-    xorg.xkbcomp
-    playerctl
     clang
     llvm
     llvmPackages.bintools # lld linker for rust
     oh-my-zsh
     tmux
-    neofetch
     bat
     btop
     zsh-powerlevel10k

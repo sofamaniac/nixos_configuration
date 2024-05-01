@@ -20,6 +20,8 @@ in {
   ];
 
   networking.hostName = "astolfo"; # Define your hostname.
+	services.printing.enable = true;
+	services.printing.drivers = [ pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper ];
 
   # Bootloader.
   boot.loader = {

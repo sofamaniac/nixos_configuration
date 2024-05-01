@@ -21,7 +21,7 @@
     };
 
     initExtra = ''
-         neofetch
+         fastfetch
          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
       # adding cargo bin to PATH
