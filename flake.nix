@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-		catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = {
@@ -29,7 +29,7 @@
     rust-overlay,
     alejandra,
     dotfiles,
-		catppuccin,
+    catppuccin,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -45,15 +45,17 @@
         modules = [
           ./modules
           ./hosts/astolfo/configuration.nix
-					catppuccin.nixosModules.catppuccin
+          catppuccin.nixosModules.catppuccin
 
-          /* # Ensure home manager config is rebuilt every time the os config is rebuilt
+          /*
+             # Ensure home manager config is rebuilt every time the os config is rebuilt
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.users.sofamaniac = ./home-manager/home.nix;
-          } */
-         
+          }
+          */
+
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [pkgs.rust-bin.stable.latest.default];

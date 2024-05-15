@@ -17,14 +17,14 @@ in {
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-	# touchpad configuration
-	services.libinput = {
-		enable = true;
-		touchpad = {
-			naturalScrolling = true;
-			clickMethod = "buttonareas";
-		};
-	};
+  # touchpad configuration
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      clickMethod = "buttonareas";
+    };
+  };
 
   networking.hostName = "astolfo"; # Define your hostname.
   services.printing.enable = true;
@@ -46,20 +46,22 @@ in {
       devices = ["nodev"];
       efiSupport = true;
       enable = true;
-			catppuccin.enable = true;
+      catppuccin.enable = true;
     };
   };
 
   ## === Battery charging === ##
-	# does not work
-  /* services.tlp = {
+  # does not work
+  /*
+     services.tlp = {
     enable = true;
     settings = {
       #Optional helps save long term battery health
       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
     };
-  }; */
+  };
+  */
   ## ======================== ##
 
   ## === DOCKER === ##

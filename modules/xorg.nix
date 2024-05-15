@@ -1,5 +1,10 @@
-{config, pkgs, nikpgs, ...}: {
-	imports = [ ./redshift.nix ];
+{
+  config,
+  pkgs,
+  nikpgs,
+  ...
+}: {
+  imports = [./redshift.nix];
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -23,20 +28,20 @@
       };
     };
   };
-	# i3 does not provide a tray
+  # i3 does not provide a tray
   # https://github.com/nix-community/home-manager/issues/2064
   systemd.user.targets.tray = {
-      description = "Home Manager System Tray";
-      requires = ["graphical-session-pre.target"];
+    description = "Home Manager System Tray";
+    requires = ["graphical-session-pre.target"];
   };
   # Configuring sddm
   services.displayManager = {
     sddm = {
       enable = true;
-			catppuccin.enable = true;
-			# we need to change the package in order for the theme to work
-			# see https://github.com/NixOS/nixpkgs/issues/292761
-			package = pkgs.kdePackages.sddm; 
+      catppuccin.enable = true;
+      # we need to change the package in order for the theme to work
+      # see https://github.com/NixOS/nixpkgs/issues/292761
+      package = pkgs.kdePackages.sddm;
     };
   };
 }

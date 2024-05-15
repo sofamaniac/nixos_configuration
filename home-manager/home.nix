@@ -2,7 +2,7 @@
   config,
   pkgs,
   dotfiles,
-	catppuccin,
+  catppuccin,
   ...
 }: {
   imports = [
@@ -13,9 +13,11 @@
     ./dunst
     ./polybar
     ./zathura
+    ./yama.nix
+		./rofi.nix
   ];
 
-	catppuccin.flavour = "macchiato";
+  catppuccin.flavour = "macchiato";
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -30,7 +32,7 @@
     vimAlias = true;
     withPython3 = true;
     withNodeJs = true;
-		# catppuccin.enable = true;
+    # catppuccin.enable = true;
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -40,26 +42,15 @@
     thunderbird
     discord
 
-    # required by YAMA #
-    yt-dlp
-    openssl
-    ffmpeg
-    # ================ #
-
     wineWowPackages.stable # wine with 32 and 64 bits support
-		dconf # required by gtk see gtk configuration
+    dconf # required by gtk see gtk configuration
   ];
-	xdg.enable = true;
-	programs.mpv = {
-		enable = true;
-		catppuccin.enable = true;
-	};
-	gtk = {
-		enable = true;
-		catppuccin.enable = true;
-		# gtk requires dconf (see https://github.com/nix-community/home-manager/issues/3113)
-	};
-
+  xdg.enable = true; # required by catppuccin gtk and yazi
+  gtk = {
+    enable = true;
+    catppuccin.enable = true;
+    # gtk requires dconf (see https://github.com/nix-community/home-manager/issues/3113)
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -77,6 +68,7 @@
   };
 
   home.sessionVariables = {
+    # EXAMPLE = "value";
   };
   home.sessionPath = ["$HOME/bin"];
 
@@ -101,7 +93,7 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-		catppuccin.enable = true;
+    catppuccin.enable = true;
   };
 
   # This value determines the Home Manager release that your configuration is

@@ -5,14 +5,16 @@
   ...
 }: {
   programs.zathura = {
-		enable = true;
-		catppuccin.enable = true;
-	};
+    enable = true;
+    catppuccin.enable = true;
+  };
 
-  /* xdg.configFile = {
+  /*
+     xdg.configFile = {
     zathura = {
       # source = ../../dotfiles/config/zathura;
       source = "${dotfiles}/config/zathura";
     };
-  }; */
+  };
+  */
 }

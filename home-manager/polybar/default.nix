@@ -10,7 +10,7 @@
   	enable = true;
   	config = ./config/config.ini;
   	script = "polybar --reload example &";
-		catppuccin.enable = true;
+  catppuccin.enable = true;
   };
   */
   home.packages = [pkgs.polybarFull];

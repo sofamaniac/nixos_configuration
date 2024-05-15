@@ -4,7 +4,7 @@
   inputs,
   nikspkg,
   ...
-}:{
+}: {
   # Enabling flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -18,11 +18,11 @@
   # optimize nix store size
   nix.optimise.automatic = true;
 
-	catppuccin.flavour = "macchiato";
+  catppuccin.flavour = "macchiato";
 
   imports = [./keyboard.nix ./locales.nix ./xorg.nix];
 
-	console.catppuccin.enable = true;
+  console.catppuccin.enable = true;
 
   # enable auto updates
   system.autoUpgrade = {
@@ -95,7 +95,7 @@
     packages = with pkgs; [
       fastfetch
       playerctl
-    	home-manager
+      home-manager
     ];
   };
 
@@ -155,10 +155,10 @@
 
   # Setting up nh
   programs.nh = {
-  	enable = true;
-  	flake = "/home/sofamaniac/nixos";
-  	clean.enable = true;
-  	clean.extraArgs = "--keep-since 7d --keep 10";
+    enable = true;
+    flake = "/home/sofamaniac/nixos";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 10";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
