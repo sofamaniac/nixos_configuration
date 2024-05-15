@@ -1,17 +1,9 @@
 {
   config,
   pkgs,
+	lib,
   ...
 }: {
-  /* home.file = {
-    ".p10k.zsh".source = ./.p10k.zsh;
-  }; */
-
-	programs.starship = {
-		enable = true;
-		enableZshIntegration = true;
-		catppuccin.enable = true;
-	};
 
   # configure zsh
   programs.zsh = {

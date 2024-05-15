@@ -18,6 +18,7 @@
 		./gtk.nix
 		./yazi.nix
 		./tmux.nix
+		./starship.nix
   ];
 
   catppuccin.flavour = "macchiato";
