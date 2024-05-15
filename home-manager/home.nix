@@ -30,7 +30,7 @@
     vimAlias = true;
     withPython3 = true;
     withNodeJs = true;
-		catppuccin.enable = true;
+		# catppuccin.enable = true;
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -47,6 +47,7 @@
     # ================ #
 
     wineWowPackages.stable # wine with 32 and 64 bits support
+		dconf # required by gtk see gtk configuration
   ];
 	xdg.enable = true;
 	programs.mpv = {
@@ -56,7 +57,9 @@
 	gtk = {
 		enable = true;
 		catppuccin.enable = true;
+		# gtk requires dconf (see https://github.com/nix-community/home-manager/issues/3113)
 	};
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -74,12 +77,12 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
   };
   home.sessionPath = ["$HOME/bin"];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
   services.unclutter = {
     enable = true;
   };
@@ -89,13 +92,6 @@
     indicator = true;
   };
 
-  # https://github.com/nix-community/home-manager/issues/2064
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "Home Manager System Tray";
-      Requires = ["graphical-session-pre.target"];
-    };
-  };
   services.syncthing.enable = true;
   programs.direnv = {
     enable = true;
@@ -105,6 +101,7 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+		catppuccin.enable = true;
   };
 
   # This value determines the Home Manager release that your configuration is

@@ -18,6 +18,8 @@
   # optimize nix store size
   nix.optimise.automatic = true;
 
+	catppuccin.flavour = "macchiato";
+
   imports = [./keyboard.nix ./locales.nix ./xorg.nix];
 
 	console.catppuccin.enable = true;
@@ -94,7 +96,6 @@
       fastfetch
       playerctl
     	home-manager
-    	nh
     ];
   };
 
@@ -153,12 +154,12 @@
   users.defaultUserShell = pkgs.zsh;
 
   # Setting up nh
-  # programs.nh = {
-  # 	enable = true;
-  # 	flake = "/home/sofamaniac/nixos";
-  # 	clean.enable = true;
-  # 	clean.extraArgs = "--keep-since 7d --keep 10";
-  # };
+  programs.nh = {
+  	enable = true;
+  	flake = "/home/sofamaniac/nixos";
+  	clean.enable = true;
+  	clean.extraArgs = "--keep-since 7d --keep 10";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
