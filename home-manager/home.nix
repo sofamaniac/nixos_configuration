@@ -15,6 +15,9 @@
     ./zathura
     ./yama.nix
 		./rofi.nix
+		./gtk.nix
+		./yazi.nix
+		./tmux.nix
   ];
 
   catppuccin.flavour = "macchiato";
@@ -35,6 +38,11 @@
     # catppuccin.enable = true;
   };
 
+	programs.fzf = {
+		enable = true;
+		enableZshIntegration = true;
+		catppuccin.enable = true;
+	};
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -43,14 +51,26 @@
     discord
 
     wineWowPackages.stable # wine with 32 and 64 bits support
-    dconf # required by gtk see gtk configuration
+
+		fastfetch
+		playerctl
+		ctags
+		jq
+		ctags
+		xclip # required for clipboard support in vim
+		wget
+		unzip
+		texliveFull
   ];
-  xdg.enable = true; # required by catppuccin gtk and yazi
-  gtk = {
-    enable = true;
-    catppuccin.enable = true;
-    # gtk requires dconf (see https://github.com/nix-community/home-manager/issues/3113)
-  };
+	programs.bat = {
+		enable = true;
+		catppuccin.enable = true;
+	};
+	programs.btop = {
+		enable = true;
+		catppuccin.enable = true;
+	};
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -89,11 +109,6 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
-  };
-  programs.yazi = {
-    enable = true;
-    enableZshIntegration = true;
-    catppuccin.enable = true;
   };
 
   # This value determines the Home Manager release that your configuration is

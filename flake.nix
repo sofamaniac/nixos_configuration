@@ -33,7 +33,8 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    # pkgs = nixpkgs.legacyPackages.${system};
+    #pkgs = nixpkgs.legacyPackages.${system};
+		# allow unfree for discord
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -46,16 +47,6 @@
           ./modules
           ./hosts/astolfo/configuration.nix
           catppuccin.nixosModules.catppuccin
-
-          /*
-             # Ensure home manager config is rebuilt every time the os config is rebuilt
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.sofamaniac = ./home-manager/home.nix;
-          }
-          */
-
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [pkgs.rust-bin.stable.latest.default];

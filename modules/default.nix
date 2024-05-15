@@ -93,33 +93,22 @@
     description = "sofamaniac";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      fastfetch
-      playerctl
-      home-manager
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+		# these are basically packages that should be available to root
+		# and one should log in as root only if something has gone terribly wrong
     tree
     git
     fzf
     ripgrep
-    rustup
-    clang
-    llvm
-    llvmPackages.bintools # lld linker for rust
-    tmux
-    bat
     btop
-    ctags
-    jq
     python3
-    ctags
-    xclip # required for clipboard support in vim
-    wget
-    unzip
+		wget
+		neovim
   ];
 
   # Setting up fonts
