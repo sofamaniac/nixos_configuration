@@ -1,7 +1,8 @@
 {
   config,
   pkgs,
-	dotfiles,
+  dotfiles,
+	catppuccin,
   ...
 }: {
   imports = [
@@ -10,30 +11,52 @@
     ./kitty
     ./firefox
     ./dunst
-		./polybar
-		./zathura
+    ./polybar
+    ./zathura
   ];
+
+	catppuccin.flavour = "macchiato";
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "sofamaniac";
   home.homeDirectory = "/home/sofamaniac";
 
+  # Enable neovim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    withPython3 = true;
+    withNodeJs = true;
+		catppuccin.enable = true;
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    firefox
+    thunderbird
+    discord
 
     # required by YAMA #
     yt-dlp
     openssl
-    mpv
     ffmpeg
     # ================ #
 
     wineWowPackages.stable # wine with 32 and 64 bits support
-		thunderbird
-		discord
   ];
+	xdg.enable = true;
+	programs.mpv = {
+		enable = true;
+		catppuccin.enable = true;
+	};
+	gtk = {
+		enable = true;
+		catppuccin.enable = true;
+	};
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

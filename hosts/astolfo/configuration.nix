@@ -16,12 +16,19 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # inputs.home-manager.nixosModules.default
   ];
+	# touchpad configuration
+	services.libinput = {
+		enable = true;
+		touchpad = {
+			naturalScrolling = true;
+			clickMethod = "buttonareas";
+		};
+	};
 
   networking.hostName = "astolfo"; # Define your hostname.
-	services.printing.enable = true;
-	services.printing.drivers = [ pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper ];
+  services.printing.enable = true;
+  services.printing.drivers = [pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper];
 
   # Bootloader.
   boot.loader = {
@@ -39,10 +46,11 @@ in {
       devices = ["nodev"];
       efiSupport = true;
       enable = true;
+			catppuccin.enable = true;
     };
   };
 
-	## === Battery charging === ##
+  ## === Battery charging === ##
   services.tlp = {
     enable = true;
     settings = {
@@ -51,10 +59,9 @@ in {
       STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
     };
   };
-	## ======================== ##
+  ## ======================== ##
 
-
-	## === DOCKER === ##
+  ## === DOCKER === ##
 
   virtualisation.docker.enable = true;
   users.extraGroups.docker.members = ["sofamaniac"];
@@ -63,7 +70,7 @@ in {
     setSocketVariable = true;
   };
 
-	## ============== ##
+  ## ============== ##
 
   # Setting up hardware acceleration
   nixpkgs.config.packageOverrides = pkgs: {

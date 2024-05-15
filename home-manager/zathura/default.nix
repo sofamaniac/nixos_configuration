@@ -1,15 +1,18 @@
 {
   config,
   pkgs,
-	dotfiles,
+  dotfiles,
   ...
 }: {
-  programs.zathura.enable = true;
-
-	xdg.configFile = {
-		zathura = {
-			# source = ../../dotfiles/config/zathura;
-			source = "${dotfiles}/config/zathura";
-		};
+  programs.zathura = {
+		enable = true;
+		catppuccin.enable = true;
 	};
+
+  /* xdg.configFile = {
+    zathura = {
+      # source = ../../dotfiles/config/zathura;
+      source = "${dotfiles}/config/zathura";
+    };
+  }; */
 }

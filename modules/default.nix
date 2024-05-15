@@ -4,18 +4,7 @@
   inputs,
   nikspkg,
   ...
-}: let
-  # cf docs for more info on how it works https://nixos.org/guides/nix-pills/callpackage-design-pattern.html
-  callPackage = path: overrides: let
-    f = import path;
-  in
-    f ((builtins.intersectAttrs (builtins.functionArgs f) pkgs) // overrides);
-
-  # Compiling the keyboard layout helps catching error in config at build time
-  compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${../keymaps/azerty} $out
-  '';
-in {
+}:{
   # Enabling flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -28,6 +17,10 @@ in {
 
   # optimize nix store size
   nix.optimise.automatic = true;
+
+  imports = [./keyboard.nix ./locales.nix ./xorg.nix];
+
+	console.catppuccin.enable = true;
 
   # enable auto updates
   system.autoUpgrade = {
@@ -66,74 +59,11 @@ in {
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
   services.udisks2.enable = true;
 
   # Tailscale configuration
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
-  # Configuring sddm
-	services.displayManager = {
-		sddm = {
-			enable = true;
-			theme = "catppuccin-macchiato";
-		};
-		# setting custom keymap
-		# sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
-	};
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    # touchpad configuration
-    libinput = {
-      enable = true;
-      touchpad = {
-        naturalScrolling = true;
-        clickMethod = "buttonareas";
-      };
-    };
-    # Configure keymap in X11
-    xkb = {
-      layout = "fr";
-      variant = "";
-    };
-    # Enabling i3
-    windowManager = {
-      i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          rofi
-          polybarFull
-          jgmenu
-          picom
-          feh
-          xdotool
-        ];
-      };
-    };
-  };
-
-  # Configure console keymap
-  # use same config as xserver
-  console.useXkbConfig = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -161,17 +91,17 @@ in {
     description = "sofamaniac";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-			fastfetch
-    	playerctl
+      fastfetch
+      playerctl
+    	home-manager
+    	nh
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kitty
     tree
-    sddm
     git
     fzf
     ripgrep
@@ -179,38 +109,17 @@ in {
     clang
     llvm
     llvmPackages.bintools # lld linker for rust
-    oh-my-zsh
     tmux
     bat
     btop
-    zsh-powerlevel10k
     ctags
     jq
     python3
     ctags
-    home-manager
     xclip # required for clipboard support in vim
-    (callPackage ./sddm-catppuccin.nix {}).sddm-catppuccin
-    pkgs.catppuccin-gtk
     wget
     unzip
-		keyd
-		nh
   ];
-
-	# Setting up keyboard
-	services.keyd = {
-		enable = true;
-		keyboards.default.settings = {
-			main = {
-				capslock = "overload(control, esc)";
-				esc = "capslock";
-				f1 = "playpause";
-				f2 = "previoussong";
-				f3 = "nextsong";
-			};
-		};
-	};
 
   # Setting up fonts
   fonts.packages = with pkgs; [
@@ -239,44 +148,17 @@ in {
     ];
   };
 
-  # Enable neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    withPython3 = true;
-    withNodeJs = true;
-  };
-
   # Enabling zsh
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-	# Setting up nh
-	# programs.nh = {
-	# 	enable = true;
-	# 	flake = "/home/sofamaniac/nixos";
-	# 	clean.enable = true;
-	# 	clean.extraArgs = "--keep-since 7d --keep 10";
-	# };
-
-
-  # Gtk theming
-  # This next stuff is technically not necessary if you're going to use
-  # a theme chooser or set it in your user settings, but if you go
-  # through all this effort might as well set it system-wide.
-  #
-  # Oddly, NixOS doesn't have a module for this yet.
-
-  environment.etc."xdg/gtk-2.0/gtkrc".text = ''
-    gtk-theme-name = "catppuccin-macchiato"
-  '';
-
-  environment.etc."xdg/gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name = catppuccin-macchiato
-  '';
+  # Setting up nh
+  # programs.nh = {
+  # 	enable = true;
+  # 	flake = "/home/sofamaniac/nixos";
+  # 	clean.enable = true;
+  # 	clean.extraArgs = "--keep-since 7d --keep 10";
+  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

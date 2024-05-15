@@ -3,9 +3,9 @@
   pkgs,
   ...
 }: {
-  imports = [./colors.nix];
   services.dunst = {
     enable = true;
+		catppuccin.enable = true;
     settings = {
       global = {
         ### Display ###
@@ -142,7 +142,7 @@
         #   %n  progress value if set without any extra characters
         #   %%  Literal %
         # Markup is allowed
-        format = "<b>%s</b>\n%b";
+        format = "<b>%s</b>\\n%b";
 
         # Alignment of message text.
         # Possible values are "left", "center" and "right".
