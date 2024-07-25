@@ -18,7 +18,7 @@
   # optimize nix store size
   nix.optimise.automatic = true;
 
-  catppuccin.flavour = "macchiato";
+  catppuccin.flavor = "macchiato";
 
   imports = [./keyboard.nix ./locales.nix ./xorg.nix];
 
@@ -71,7 +71,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -109,6 +108,7 @@
     python3
 		wget
 		neovim
+		xxd
   ];
 
   # Setting up fonts

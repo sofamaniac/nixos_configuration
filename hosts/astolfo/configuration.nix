@@ -3,15 +3,9 @@
   pkgs,
   inputs,
   nikspkg,
-  stdenv,
-  fetchFromGitHub,
+	lib,
   ...
 }: let
-  # cf docs for more info on how it works https://nixos.org/guides/nix-pills/callpackage-design-pattern.html
-  callPackage = path: overrides: let
-    f = import path;
-  in
-    f ((builtins.intersectAttrs (builtins.functionArgs f) pkgs) // overrides);
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -25,6 +19,15 @@ in {
       clickMethod = "buttonareas";
     };
   };
+
+	# autologin
+	services.displayManager = {
+		autoLogin = {
+			enable = true;
+			user = "sofamaniac";
+		};
+		defaultSession = lib.mkDefault "none+i3";
+	};
 
   networking.hostName = "astolfo"; # Define your hostname.
   services.printing.enable = true;
@@ -49,6 +52,8 @@ in {
       catppuccin.enable = true;
     };
   };
+  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/72e56314-4e78-48ac-9777-d2a4998b4b5f";
+
 
   ## === Battery charging === ##
   # does not work

@@ -19,9 +19,10 @@
 		./yazi.nix
 		./tmux.nix
 		./starship.nix
+		./music/mpd.nix
   ];
 
-  catppuccin.flavour = "macchiato";
+  catppuccin.flavor = "macchiato";
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -37,6 +38,11 @@
     withPython3 = true;
     withNodeJs = true;
     # catppuccin.enable = true;
+		extraPackages = with pkgs; [
+			xclip  # clipboard support
+			gcc  # for treesitter
+			ctags
+		];
   };
 
 	programs.fzf = {
@@ -55,13 +61,12 @@
 
 		fastfetch
 		playerctl
-		ctags
 		jq
-		ctags
-		xclip # required for clipboard support in vim
 		wget
 		unzip
 		texliveFull
+
+		xxd
   ];
 	programs.bat = {
 		enable = true;
