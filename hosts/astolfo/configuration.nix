@@ -3,7 +3,7 @@
   pkgs,
   inputs,
   nikspkg,
-	lib,
+  lib,
   ...
 }: let
 in {
@@ -20,14 +20,14 @@ in {
     };
   };
 
-	# autologin
-	services.displayManager = {
-		autoLogin = {
-			enable = true;
-			user = "sofamaniac";
-		};
-		defaultSession = lib.mkDefault "none+i3";
-	};
+  # autologin
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "sofamaniac";
+    };
+    defaultSession = lib.mkDefault "none+i3";
+  };
 
   networking.hostName = "astolfo"; # Define your hostname.
   services.printing.enable = true;
@@ -53,7 +53,6 @@ in {
     };
   };
   boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/72e56314-4e78-48ac-9777-d2a4998b4b5f";
-
 
   ## === Battery charging === ##
   # does not work

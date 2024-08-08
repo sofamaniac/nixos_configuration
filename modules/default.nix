@@ -98,17 +98,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-		# these are basically packages that should be available to root
-		# and one should log in as root only if something has gone terribly wrong
+    # these are basically packages that should be available to root
+    # and one should log in as root only if something has gone terribly wrong
     tree
     git
     fzf
     ripgrep
     btop
     python3
-		wget
-		neovim
-		xxd
+    wget
+    neovim
+    xxd
   ];
 
   # Setting up fonts

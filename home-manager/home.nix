@@ -14,15 +14,21 @@
     ./polybar
     ./zathura
     ./yama.nix
-		./rofi.nix
-		./gtk.nix
-		./yazi.nix
-		./tmux.nix
-		./starship.nix
-		./music/mpd.nix
+    ./rofi.nix
+    ./gtk.nix
+    ./yazi.nix
+    ./tmux.nix
+    ./starship.nix
+    ./music/mpd.nix
   ];
 
-  catppuccin.flavor = "macchiato";
+  catppuccin = {
+    flavor = "macchiato";
+    pointerCursor = {
+      enable = true;
+      accent = "rosewater";
+    };
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -38,18 +44,18 @@
     withPython3 = true;
     withNodeJs = true;
     # catppuccin.enable = true;
-		extraPackages = with pkgs; [
-			xclip  # clipboard support
-			gcc  # for treesitter
-			ctags
-		];
+    extraPackages = with pkgs; [
+      xclip # clipboard support
+      gcc # for treesitter
+      ctags
+    ];
   };
 
-	programs.fzf = {
-		enable = true;
-		enableZshIntegration = true;
-		catppuccin.enable = true;
-	};
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    catppuccin.enable = true;
+  };
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -59,24 +65,27 @@
 
     wineWowPackages.stable # wine with 32 and 64 bits support
 
-		fastfetch
-		playerctl
-		jq
-		wget
-		unzip
-		texliveFull
+    playerctl
+    jq
+    wget
+    unzip
+    texliveFull
 
-		xxd
+    xxd
+
+		# Nice utilities
+		eza
+		dust
+		lazygit
   ];
-	programs.bat = {
-		enable = true;
-		catppuccin.enable = true;
-	};
-	programs.btop = {
-		enable = true;
-		catppuccin.enable = true;
-	};
-
+  programs.bat = {
+    enable = true;
+    catppuccin.enable = true;
+  };
+  programs.btop = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

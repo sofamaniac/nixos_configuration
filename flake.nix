@@ -34,7 +34,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     #pkgs = nixpkgs.legacyPackages.${system};
-		# allow unfree for discord
+    # allow unfree for discord
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
