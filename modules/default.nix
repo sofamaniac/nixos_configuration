@@ -41,6 +41,25 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+	# Enabel polkit
+	security.polkit.enable = true;
+	systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+		};
+	};
+
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -117,7 +136,8 @@
     noto-fonts-cjk
     noto-fonts-emoji
     noto-fonts-extra
-    (nerdfonts.override {fonts = ["Hack"];})
+    (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
+    iosevka
   ];
   fonts.fontDir.enable = true;
   # Set default fonts

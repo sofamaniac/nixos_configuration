@@ -5,6 +5,10 @@
   ...
 }: {
 	imports = [ ../fastfetch.nix ];
+
+  # adding cargo bin to PATH
+  home.sessionPath = ["$HOME/.cargo/bin"];
+
   # configure zsh
   programs.zsh = {
     enable = true;
@@ -25,14 +29,12 @@
 
     initExtra = ''
       fastfetch
-         # adding cargo bin to PATH
-         export PATH="$PATH:/home/sofamaniac/.cargo/bin"
 
-         # direnv setup
-         eval "$(direnv hook zsh)"
+      # direnv setup
+      eval "$(direnv hook zsh)"
 
-         # startship
-         # eval "$(starship init zsh)"
+      # startship
+      # eval "$(starship init zsh)"
     '';
     shellAliases = {
       update = "sudo nixos-rebuild switch";

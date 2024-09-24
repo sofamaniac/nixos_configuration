@@ -21,6 +21,9 @@
       # Fixing colors
       set-option -sa terminal-overrides ",xterm*:Tc"
 
+      # Disable delay when pressing `Escape`
+      set -s escape-time 0
+
       # Vim style pane selection
       bind h select-pane -L
       bind j select-pane -D

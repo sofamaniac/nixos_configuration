@@ -20,6 +20,7 @@
     ./tmux.nix
     ./starship.nix
     ./music/mpd.nix
+    ./nvim.nix
   ];
 
   catppuccin = {
@@ -35,21 +36,6 @@
   home.username = "sofamaniac";
   home.homeDirectory = "/home/sofamaniac";
 
-  # Enable neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    withPython3 = true;
-    withNodeJs = true;
-    # catppuccin.enable = true;
-    extraPackages = with pkgs; [
-      xclip # clipboard support
-      gcc # for treesitter
-      ctags
-    ];
-  };
 
   programs.fzf = {
     enable = true;
