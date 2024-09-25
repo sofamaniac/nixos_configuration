@@ -19,7 +19,7 @@
     ];
   };
   home.sessionVariables = {
-      # required for marksman because no libicu
+      # required for marksman (markdown lsp) because no libicu
       DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
   };
 
