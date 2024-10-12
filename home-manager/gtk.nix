@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # adding dependencies requires for gtk
   # this should maybe be added in nixos config
   # see https://github.com/nix-community/home-manager/issues/3113
@@ -11,7 +7,7 @@
   xdg.enable = true;
   gtk = {
     enable = true;
-		# has been deprecated :(((
+    # has been deprecated :(((
     # catppuccin.enable = true;
   };
 }

@@ -1,12 +1,19 @@
 {
-  config,
   pkgs,
   inputs,
-  nikspkg,
   ...
 }: {
   # Enabling flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  imports = [
+    ./keyboard.nix
+    ./locales.nix
+    ./xorg.nix
+    ./virtualization.nix
+    ./docker.nix
+    ./fonts.nix
+  ];
 
   programs.nix-ld.enable = true;
 
@@ -19,8 +26,6 @@
   nix.optimise.automatic = true;
 
   catppuccin.flavor = "macchiato";
-
-  imports = [./keyboard.nix ./locales.nix ./xorg.nix];
 
   console.catppuccin.enable = true;
 
@@ -41,24 +46,23 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-	# Enabel polkit
-	security.polkit.enable = true;
-	systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
+  # Enabel polkit
+  security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
-		};
-	};
-
+    };
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -67,10 +71,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
-
-  # Enable OpenGL
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
 
   # Enable steam
   nixpkgs.config.allowUnfree = true;
@@ -88,6 +88,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -127,36 +128,7 @@
     python3
     wget
     neovim
-    xxd
   ];
-
-  # Setting up fonts
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    noto-fonts-extra
-    (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
-    iosevka
-  ];
-  fonts.fontDir.enable = true;
-  # Set default fonts
-  fonts.fontconfig.defaultFonts = {
-    monospace = [
-      "Hack Nerd Font"
-      "Noto Sans Mono CJK JP"
-    ];
-
-    sansSerif = [
-      "Noto Sans"
-      "Noto Sans CJK JP"
-    ];
-
-    serif = [
-      "Noto Serif"
-      "Noto Serif CJK JP"
-    ];
-  };
 
   # Enabling zsh
   programs.zsh.enable = true;

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Enable neovim
   programs.neovim = {
     enable = true;
@@ -16,11 +12,11 @@
       xclip # clipboard support
       gcc # for treesitter
       ctags
+      tree-sitter
     ];
   };
   home.sessionVariables = {
-      # required for marksman (markdown lsp) because no libicu
-      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
+    # required for marksman (markdown lsp) because no libicu
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
   };
-
 }

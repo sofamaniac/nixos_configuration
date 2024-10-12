@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:{
+{pkgs, ...}: {
   # Setting up fonts
   fonts.packages = with pkgs; [
     noto-fonts

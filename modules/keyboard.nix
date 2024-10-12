@@ -1,12 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  nikspkg,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     keyd
+    kanata
   ];
 
   # Setting up keyboard
@@ -19,6 +14,7 @@
         f1 = "playpause";
         f2 = "previoussong";
         f3 = "nextsong";
+        rightcontrol = "leftmeta";
       };
     };
   };

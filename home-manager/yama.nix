@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  dotfiles,
-  ...
-}: {
+{pkgs, ...}: {
   # Add required dependencies for yama
   home.packages = with pkgs; [
     yt-dlp

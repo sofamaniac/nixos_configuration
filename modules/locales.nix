@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  nikspkg,
-  ...
-}: {
+{...}: {
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 

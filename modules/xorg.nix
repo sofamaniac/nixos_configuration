@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  nikpgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./redshift.nix];
   # Enable the X11 windowing system.
   services.xserver = {

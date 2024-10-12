@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   # required by catppuccin
   xdg.enable = true;
   programs.yazi = {

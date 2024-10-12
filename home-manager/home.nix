@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  dotfiles,
-  catppuccin,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./picom
     ./zsh
@@ -36,7 +30,6 @@
   home.username = "sofamaniac";
   home.homeDirectory = "/home/sofamaniac";
 
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -47,6 +40,7 @@
   home.packages = with pkgs; [
     thunderbird
     discord
+    obsidian
 
     wineWowPackages.stable # wine with 32 and 64 bits support
     ruffle
@@ -55,14 +49,16 @@
     jq
     wget
     unzip
+    unrar
     texliveFull
 
     xxd
 
-		# Nice utilities
-		eza
-		dust
-		lazygit
+    # Nice utilities
+    eza
+    dust
+    lazygit
+    tldr
   ];
   programs.bat = {
     enable = true;

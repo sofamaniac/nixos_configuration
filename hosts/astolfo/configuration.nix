@@ -30,8 +30,6 @@ in {
   };
 
   networking.hostName = "astolfo"; # Define your hostname.
-  services.printing.enable = true;
-  services.printing.drivers = [pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper];
 
   # Bootloader.
   boot.loader = {
@@ -68,22 +66,11 @@ in {
   */
   ## ======================== ##
 
-  ## === DOCKER === ##
-
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = ["sofamaniac"];
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
-
-  ## ============== ##
-
   # Setting up hardware acceleration
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD

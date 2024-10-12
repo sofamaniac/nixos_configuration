@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-	imports = [ ../fastfetch.nix ];
+  imports = [../fastfetch.nix];
 
   # adding cargo bin to PATH
   home.sessionPath = ["$HOME/.cargo/bin"];
