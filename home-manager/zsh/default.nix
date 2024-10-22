@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{config, ...}: {
   imports = [../fastfetch.nix];
 
   # adding cargo bin to PATH
@@ -39,6 +34,10 @@
     shellAliases = {
       update = "sudo nixos-rebuild switch";
       pdf = "zathura";
+      ll = "eza -al";
+      l = "eza -l";
+      lt = "eza -l --tree";
+      llt = "eza -al --tree";
     };
   };
 }

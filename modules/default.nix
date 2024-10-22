@@ -25,8 +25,8 @@
   # optimize nix store size
   nix.optimise.automatic = true;
 
+  # Enable catppuccin
   catppuccin.flavor = "macchiato";
-
   console.catppuccin.enable = true;
 
   # enable auto updates
@@ -128,6 +128,9 @@
     python3
     wget
     neovim
+    # Add man pages
+    man-pages
+    man-pages-posix
   ];
 
   # Enabling zsh
