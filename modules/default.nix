@@ -110,9 +110,14 @@
   users.users.sofamaniac = {
     isNormalUser = true;
     description = "sofamaniac";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "uinput" "input"];
     packages = with pkgs; [
     ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
   };
 
   # List packages installed in system profile. To search, run:
