@@ -1,12 +1,8 @@
 {
-  config,
   pkgs,
-  inputs,
-  nikspkg,
   lib,
   ...
-}: let
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -53,17 +49,8 @@ in {
   boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/72e56314-4e78-48ac-9777-d2a4998b4b5f";
 
   ## === Battery charging === ##
-  # does not work
-  /*
-     services.tlp = {
-    enable = true;
-    settings = {
-      #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 85; # 80 and above it stops charging
-    };
-  };
-  */
+  powerManagement.enable = true;
+  services.tlp.enable = true;
   ## ======================== ##
 
   # Setting up hardware acceleration

@@ -38,9 +38,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    kmonad
     thunderbird
     discord
+
     obsidian
+    zotero
+    pandoc
 
     wineWowPackages.stable # wine with 32 and 64 bits support
     ruffle
@@ -52,6 +56,8 @@
     unrar
     texliveFull
 
+    lldb
+    gdb
     xxd
 
     # Nice utilities
@@ -59,6 +65,12 @@
     dust
     lazygit
     tldr
+
+    rustdesk-flutter
+
+    eww
+
+    libreoffice
   ];
   programs.bat = {
     enable = true;
@@ -72,6 +84,7 @@
     enable = true;
     enableZshIntegration = true;
   };
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

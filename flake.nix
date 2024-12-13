@@ -12,7 +12,10 @@
       url = "github:sofamaniac/dotfiles";
       flake = false;
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-colors.url = "github:misterio77/nix-colors";
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
