@@ -4,21 +4,22 @@
   dotfiles,
   ...
 }: {
-  # Totally broken for now :(
+  # Cannot be setup to use a folder for the configuration
   /*
-     services.polybar = {
+  services.polybar = {
   	enable = true;
-  	config = ./config/config.ini;
+  	config = "~/.config/polybar/config.ini";
   	script = "polybar --reload example &";
-  catppuccin.enable = true;
+    package = pkgs.polybarFull;
+    # catppuccin.enable = true;
   };
   */
-  home.packages = [pkgs.polybarFull];
 
+  home.packages = [pkgs.polybarFull];
   xdg.configFile = {
     polybar = {
       source = "${dotfiles}/config/polybar";
-      # onChange = "pkill polybar; ~/.config/polybar/launch_polybar.sh";
+      onChange = "pkill polybar; ~/.config/polybar/launch_polybar.sh";
     };
   };
 }

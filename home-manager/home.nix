@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, dotfiles, ...}: {
   imports = [
     ./picom
     ./zsh
@@ -13,7 +13,6 @@
     ./yazi.nix
     ./tmux.nix
     ./starship.nix
-    ./music/mpd.nix
     ./nvim.nix
   ];
 
@@ -93,6 +92,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    "scripts".source = "${dotfiles}/scripts";
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

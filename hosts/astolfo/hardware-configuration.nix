@@ -12,27 +12,28 @@
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.initrd.kernelModules = ["dm-snapshot" "cryptd" ];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/3da02466-1853-462a-9110-59ad376a1957";
+    device = "/dev/disk/by-label/NIXOS_ROOT";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/93BB-740F";
+    device = "/dev/disk/by-label/NIXOS_BOOT";
+    options = [ "fmask=007" "dmask=0077"];
     fsType = "vfat";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/66d7a5b5-39c1-4451-9b66-c752b958fde8";
+    device = "/dev/disk/by-label/NIXOS_HOME";
     fsType = "ext4";
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/bf065c63-b95e-4132-b95a-94b6c3c1a76c";}
+    {device = "/dev/disk/by-label/NIXOS_SWAP";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

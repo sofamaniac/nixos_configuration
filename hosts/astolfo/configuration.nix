@@ -27,6 +27,16 @@
 
   networking.hostName = "astolfo"; # Define your hostname.
 
+  # Handle BIOS updates
+  services.fwupd.enable = true;
+
+  # Add support for fingerprint reader
+  systemd.services.fprintd= {
+      wantedBy = ["multi-user.target"];
+      serviceConfig.type = "simple";
+  };
+  services.fprintd.enable = true;
+
   # Bootloader.
   boot.loader = {
     efi = {
@@ -46,25 +56,6 @@
       catppuccin.enable = true;
     };
   };
-  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/72e56314-4e78-48ac-9777-d2a4998b4b5f";
+  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-label/NIXOS";
 
-  ## === Battery charging === ##
-  powerManagement.enable = true;
-  services.tlp.enable = true;
-  ## ======================== ##
-
-  # Setting up hardware acceleration
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
-  };
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
 }

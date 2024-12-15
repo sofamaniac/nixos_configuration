@@ -21,6 +21,7 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     catppuccin.url = "github:catppuccin/nix";
   };
@@ -33,6 +34,7 @@
     alejandra,
     dotfiles,
     catppuccin,
+    nixos-hardware,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -48,6 +50,8 @@
         modules = [
           ./modules
           ./hosts/astolfo/configuration.nix
+          # Framework hardware support
+          nixos-hardware.nixosModules.framework-13-7040-amd
           catppuccin.nixosModules.catppuccin
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];

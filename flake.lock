@@ -57,11 +57,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1731497606,
-        "narHash": "sha256-7WPwd9j2A0wmoTqJFjd3gK0RElaR4rnfoQoH8+VA0tw=",
+        "lastModified": 1734217724,
+        "narHash": "sha256-ESKlO3TRDiQkkYyeia1K7UUg66boNe+6VIMHV/Oy5vQ=",
         "owner": "sofamaniac",
         "repo": "dotfiles",
-        "rev": "3d4c2366e880ea3e8744cd62b8f471356c967140",
+        "rev": "c6928c11206130b259678b065d403c7d3605e87b",
         "type": "github"
       },
       "original": {
@@ -147,6 +147,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1733861262,
+        "narHash": "sha256-+jjPup/ByS0LEVIrBbt7FnGugJgLeG9oc+ivFASYn2U=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "cf737e2eba82b603f54f71b10cb8fd09d22ce3f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733212471,
@@ -185,6 +201,7 @@
         "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
       }
