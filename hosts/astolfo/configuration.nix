@@ -31,11 +31,15 @@
   services.fwupd.enable = true;
 
   # Add support for fingerprint reader
-  systemd.services.fprintd= {
-      wantedBy = ["multi-user.target"];
-      serviceConfig.type = "simple";
+  systemd.services.fprintd = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig.type = "simple";
   };
   services.fprintd.enable = true;
+
+  # Power management
+  # the wiki indicates that for AMD Framework laptop, power-profiles-daemon should be preferred over tlp
+  services.power-profiles-daemon.enable = true;
 
   # Bootloader.
   boot.loader = {
@@ -57,5 +61,4 @@
     };
   };
   boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-label/NIXOS";
-
 }

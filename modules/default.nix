@@ -14,6 +14,7 @@
     ./docker.nix
     ./fonts.nix
     ./flatpak.nix
+    ./network.nix
   ];
 
   programs.nix-ld.enable = true;
@@ -65,14 +66,6 @@
     };
   };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  services.blueman.enable = true;
-
   # Enable steam
   nixpkgs.config.allowUnfree = true;
   programs.steam = {
@@ -82,10 +75,6 @@
   };
 
   services.udisks2.enable = true;
-
-  # Tailscale configuration
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client"; # required to use exit node cf wiki for more info
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -113,7 +102,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.common.default = "*";
   };
 
