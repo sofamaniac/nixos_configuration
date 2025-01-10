@@ -14,7 +14,7 @@
         f1 = "playpause";
         f2 = "previoussong";
         f3 = "nextsong";
-        rightcontrol = "leftmeta";
+        # rightcontrol = "leftmeta";
       };
     };
   };
