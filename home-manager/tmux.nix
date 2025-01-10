@@ -1,7 +1,7 @@
 {pkgs, ...}: {
+  catppuccin.tmux.enable = true;
   programs.tmux = {
     enable = true;
-    catppuccin.enable = true;
     sensibleOnTop = true;
     prefix = "M-Space"; # Alt+Space
     mouse = true;

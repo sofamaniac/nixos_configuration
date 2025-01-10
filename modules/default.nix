@@ -17,6 +17,9 @@
     ./network.nix
   ];
 
+  # using latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   programs.nix-ld.enable = true;
 
   programs.nix-ld.libraries = with pkgs; [
@@ -29,7 +32,7 @@
 
   # Enable catppuccin
   catppuccin.flavor = "macchiato";
-  console.catppuccin.enable = true;
+  catppuccin.tty.enable = true;
 
   # enable auto updates
   system.autoUpgrade = {
@@ -120,6 +123,8 @@
     python3
     wget
     neovim
+    pciutils
+    zellij
     # Add man pages
     man-pages
     man-pages-posix

@@ -3,9 +3,9 @@
   pkgs,
   ...
 }: {
+  catppuccin.dunst.enable = true;
   services.dunst = {
     enable = true;
-    catppuccin.enable = true;
     settings = {
       global = {
         ### Display ###

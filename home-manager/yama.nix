@@ -7,6 +7,6 @@
   ];
   programs.mpv = {
     enable = true;
-    catppuccin.enable = true;
   };
+  catppuccin.mpv.enable = true;
 }

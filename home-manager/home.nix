@@ -22,7 +22,7 @@
 
   catppuccin = {
     flavor = "macchiato";
-    pointerCursor = {
+    cursors = {
       enable = true;
       accent = "rosewater";
     };
@@ -36,8 +36,8 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    catppuccin.enable = true;
   };
+  catppuccin.fzf.enable = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -77,12 +77,12 @@
   ];
   programs.bat = {
     enable = true;
-    catppuccin.enable = true;
   };
+  catppuccin.bat.enable = true;
   programs.btop = {
     enable = true;
-    catppuccin.enable = true;
   };
+  catppuccin.btop.enable = true;
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;

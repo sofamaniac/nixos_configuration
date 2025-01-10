@@ -13,8 +13,8 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot" "crytpd"];
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/NIXOS";
+  boot.initrd.kernelModules = ["dm-snapshot" "cryptd"];
+  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-label/NIXOS";
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 

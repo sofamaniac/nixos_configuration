@@ -4,6 +4,8 @@
   # adding cargo bin to PATH
   home.sessionPath = ["$HOME/.cargo/bin"];
 
+  catppuccin.zsh-syntax-highlighting.enable = true;
+
   # configure zsh
   programs.zsh = {
     enable = true;
@@ -13,7 +15,6 @@
     };
     syntaxHighlighting = {
       enable = true;
-      catppuccin.enable = true;
     };
 
     # Enabling oh-my-zsh

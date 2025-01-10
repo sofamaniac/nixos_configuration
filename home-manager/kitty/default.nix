@@ -6,7 +6,7 @@
 }: {
   programs.kitty = {
     enable = true;
-    catppuccin.enable = true;
     extraConfig = builtins.readFile ./kitty.conf;
   };
+  catppuccin.kitty.enable = true;
 }

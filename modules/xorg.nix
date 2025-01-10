@@ -33,10 +33,10 @@
   services.displayManager = {
     sddm = {
       enable = true;
-      catppuccin.enable = true;
       # we need to change the package in order for the theme to work
       # see https://github.com/NixOS/nixpkgs/issues/292761
       package = pkgs.kdePackages.sddm;
     };
   };
+  catppuccin.sddm.enable = true;
 }

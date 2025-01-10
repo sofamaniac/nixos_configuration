@@ -1,7 +1,7 @@
 {...}: {
+  catppuccin.rofi.enable = true;
   programs.rofi = {
     enable = true;
-    catppuccin.enable = true;
     terminal = "kitty";
     font = "Hack Nerd Font Mono 14";
     extraConfig = {

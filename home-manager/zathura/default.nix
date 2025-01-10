@@ -6,8 +6,8 @@
 }: {
   programs.zathura = {
     enable = true;
-    catppuccin.enable = true;
   };
+  catppuccin.zathura.enable = true;
 
   /*
      xdg.configFile = {

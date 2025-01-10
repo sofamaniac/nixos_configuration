@@ -1,8 +1,8 @@
 {lib, ...}: {
+  catppuccin.starship.enable = true;
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    catppuccin.enable = true;
     settings = {
       format = lib.concatStrings [
         "[](sapphire)"

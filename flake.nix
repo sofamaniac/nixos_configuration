@@ -49,7 +49,7 @@
         specialArgs = {inherit inputs dotfiles;};
         modules = [
           ./modules
-          ./hosts/astolfo/configuration.nix
+          ./hosts/astolfo/common.nix
           # Framework hardware support
           nixos-hardware.nixosModules.framework-13-7040-amd
           catppuccin.nixosModules.catppuccin
