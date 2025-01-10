@@ -124,7 +124,6 @@
     wget
     neovim
     pciutils
-    zellij
     # Add man pages
     man-pages
     man-pages-posix
