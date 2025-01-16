@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   # Enabling flakes
@@ -15,6 +16,7 @@
     ./fonts.nix
     ./flatpak.nix
     ./network.nix
+    ./secrets.nix
   ];
 
   # using latest kernel
@@ -100,7 +102,11 @@
   users.users.sofamaniac = {
     isNormalUser = true;
     description = "sofamaniac";
+    hashedPasswordFile = config.sops.secrets.password.path;
     extraGroups = ["networkmanager" "wheel" "uinput" "input"];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkXtlTePOTRcksf3XCe/u11VCII0j1AC88KPc9KXcItgaebATOtepcn4oii1MSwsna/8DMLaOrJI5cBErqEuNX6L4iWc6k308uf7uUzs/DFRfIBPgdnWvh4WYCFchJ0eWcA3Qq4vXFvW0yVkGsrc5GNe5X44FswcGHUDe+L3XZ2uriRp6qKEWkDyNcX2U9GtDXzBAhXYyUxgQdjw62MZcpKaumKXIl0hVJ++qEDcgoSFSlsNH7eqf7YiPWAmALf+5W3Ol299YjkfQAv0VAoDqAkMnMUiuBdT/TwAHqTb9dOrzXlC/j6j+pnUn8NYXfTazNlvpy5X51CTjigrmI8gSTIU/ScOWL8PprKDBrKa6ybbS2m0IU0eXzW0f0M0QWLEkU7GxOB/5SEh6sHK3NIOZJ4cDnYoLJu+yBLBfa1W8c7eTvjUIykyQNhWgjCC49LKcKx15ltKRcxIQQsMQj2zAfvij0+P/0x8qmiH0/5ZwoGkck9z2CXNAv2KHw01IoXkM="
+    ];
   };
 
   xdg.portal = {
@@ -124,6 +130,7 @@
     wget
     neovim
     pciutils
+    sops
     # Add man pages
     man-pages
     man-pages-posix
@@ -152,8 +159,11 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.PermitRootLogin = "no";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

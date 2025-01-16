@@ -8,6 +8,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
     dotfiles = {
       url = "github:sofamaniac/dotfiles";
       flake = false;
@@ -35,6 +38,7 @@
     dotfiles,
     catppuccin,
     nixos-hardware,
+    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -46,7 +50,7 @@
   in {
     nixosConfigurations = {
       astolfo = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs dotfiles;};
+        specialArgs = { inherit inputs; };
         modules = [
           ./modules
           ./hosts/astolfo/common.nix
@@ -60,6 +64,7 @@
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }
+          sops-nix.nixosModules.sops
         ];
       };
     };

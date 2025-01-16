@@ -1,8 +1,9 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
   imports = [
     ./configuration.nix
     ./hardware-configuration.nix
   ];
+  environment.systemPackages = with pkgs; [brightnessctl];
   # touchpad configuration
   services.libinput = {
     enable = true;
