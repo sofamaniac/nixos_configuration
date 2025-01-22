@@ -29,9 +29,6 @@
     # here, NOT in environment.systemPackages
   ];
 
-  # optimize nix store size
-  nix.optimise.automatic = true;
-
   # Enable catppuccin
   catppuccin.flavor = "macchiato";
   catppuccin.tty.enable = true;
@@ -39,19 +36,14 @@
   # enable auto updates
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
     dates = "14:00";
     randomizedDelaySec = "45min";
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # optimize nix store size
+  nix.optimise.automatic = true;
+  # automatically trigger garbage collection if less than 20GiB of available space in /nix/store
+  nix.settings.min-free = 20*1024*1024;
 
   # Enabel polkit
   security.polkit.enable = true;
@@ -104,9 +96,7 @@
     description = "sofamaniac";
     hashedPasswordFile = config.sops.secrets.password.path;
     extraGroups = ["networkmanager" "wheel" "uinput" "input"];
-    openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkXtlTePOTRcksf3XCe/u11VCII0j1AC88KPc9KXcItgaebATOtepcn4oii1MSwsna/8DMLaOrJI5cBErqEuNX6L4iWc6k308uf7uUzs/DFRfIBPgdnWvh4WYCFchJ0eWcA3Qq4vXFvW0yVkGsrc5GNe5X44FswcGHUDe+L3XZ2uriRp6qKEWkDyNcX2U9GtDXzBAhXYyUxgQdjw62MZcpKaumKXIl0hVJ++qEDcgoSFSlsNH7eqf7YiPWAmALf+5W3Ol299YjkfQAv0VAoDqAkMnMUiuBdT/TwAHqTb9dOrzXlC/j6j+pnUn8NYXfTazNlvpy5X51CTjigrmI8gSTIU/ScOWL8PprKDBrKa6ybbS2m0IU0eXzW0f0M0QWLEkU7GxOB/5SEh6sHK3NIOZJ4cDnYoLJu+yBLBfa1W8c7eTvjUIykyQNhWgjCC49LKcKx15ltKRcxIQQsMQj2zAfvij0+P/0x8qmiH0/5ZwoGkck9z2CXNAv2KHw01IoXkM="
-    ];
+    openssh.authorizedKeys.keyFiles = [ ../id_rsa.pub ];
   };
 
   xdg.portal = {
