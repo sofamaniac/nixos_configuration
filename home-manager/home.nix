@@ -70,11 +70,10 @@
     lazygit
     tldr
 
-    rustdesk-flutter
-
-    eww
-
     libreoffice
+
+    # required for dotfiles/scripts/volumectl
+    bc
   ];
   programs.bat = {
     enable = true;
