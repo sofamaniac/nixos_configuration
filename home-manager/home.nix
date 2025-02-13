@@ -66,7 +66,6 @@
     # Nice utilities
     eza
     dust
-    lazygit
     tldr
 
     libreoffice
@@ -74,6 +73,8 @@
     # required for dotfiles/scripts/volumectl
     bc
   ];
+  programs.lazygit.enable = true;
+  catppuccin.lazygit.enable = true;
   programs.bat = {
     enable = true;
   };
