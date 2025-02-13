@@ -116,6 +116,8 @@
     ripgrep
     fd
     btop
+    dust
+    duf
     python3
     wget
     neovim

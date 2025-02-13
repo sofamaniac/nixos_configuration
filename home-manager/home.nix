@@ -60,7 +60,6 @@
     unrar
     texliveFull
 
-    lldb
     gdb
     xxd
 
