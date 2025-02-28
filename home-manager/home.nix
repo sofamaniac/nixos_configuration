@@ -18,6 +18,7 @@
     ./tmux.nix
     ./starship.nix
     ./nvim.nix
+    ./alacritty.nix
   ];
 
   catppuccin = {
@@ -42,8 +43,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    kmonad
     thunderbird
+    libreoffice
     discord
 
     obsidian
@@ -67,11 +68,13 @@
     eza
     dust
     tldr
-
-    libreoffice
+    hexyl
 
     # required for dotfiles/scripts/volumectl
     bc
+
+    # for steam proton-ge
+    protonup-qt
   ];
   programs.lazygit.enable = true;
   catppuccin.lazygit.enable = true;
@@ -83,10 +86,13 @@
     enable = true;
   };
   catppuccin.btop.enable = true;
-  programs.zoxide = {
+
+  programs.aerc.enable = true;
+  catppuccin.aerc = {
     enable = true;
-    enableZshIntegration = true;
+    flavor = "mocha";
   };
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -105,6 +111,9 @@
   };
 
   home.sessionPath = ["$HOME/bin"];
+  home.sessionVariables = {
+      TERMINAL = "alacritty";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

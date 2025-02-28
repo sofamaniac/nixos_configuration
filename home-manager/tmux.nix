@@ -16,6 +16,8 @@
 
       # Fixing colors
       set-option -sa terminal-overrides ",xterm*:Tc"
+      set -ag terminal-overrides ",xterm-256color:RGB"
+      set -g default-terminal "tmux-256color"
 
       # Disable delay when pressing `Escape`
       set -s escape-time 0

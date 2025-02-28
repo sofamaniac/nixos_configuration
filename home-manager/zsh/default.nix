@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, pkgs, ...}: {
   imports = [../fastfetch.nix];
 
   # adding cargo bin to PATH
@@ -16,12 +16,23 @@
     syntaxHighlighting = {
       enable = true;
     };
+    autosuggestion = {
+        enable = true;
+    };
 
     # Enabling oh-my-zsh
     oh-my-zsh = {
       enable = true;
-      plugins = ["colored-man-pages" "tmux"];
+      plugins = ["colored-man-pages" "tmux" ];
     };
+
+    plugins = [
+        {
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
+    ];
 
     initExtra = ''
       fastfetch
