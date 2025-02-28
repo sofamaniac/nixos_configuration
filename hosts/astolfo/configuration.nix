@@ -9,7 +9,7 @@
   ];
 
   # Framework specific settings
-
+  
   # Handle BIOS updates
   services.fwupd.enable = true;
 
@@ -23,6 +23,8 @@
   # Power management
   # the wiki indicates that for AMD Framework laptop, power-profiles-daemon should be preferred over tlp
   services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+  powerManagement.powertop.enable = true;
 
   # WIFI stability issues
   hardware.enableRedistributableFirmware = true;

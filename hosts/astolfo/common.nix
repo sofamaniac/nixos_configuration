@@ -19,7 +19,7 @@
       enable = true;
       user = "sofamaniac";
     };
-    defaultSession = lib.mkDefault "none+i3";
+    # defaultSession = lib.mkDefault "none+i3";
   };
   # Bootloader.
   boot.loader = {

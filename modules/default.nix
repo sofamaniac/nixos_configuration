@@ -70,6 +70,7 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.gamemode.enable = true;
 
   services.udisks2.enable = true;
 
@@ -123,6 +124,7 @@
     neovim
     pciutils
     sops
+    powertop
     # Add man pages
     man-pages
     man-pages-posix
