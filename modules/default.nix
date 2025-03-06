@@ -103,8 +103,9 @@
     isNormalUser = true;
     description = "sofamaniac";
     hashedPasswordFile = config.sops.secrets.password.path;
-    extraGroups = ["networkmanager" "wheel" "uinput" "input"];
+    extraGroups = ["networkmanager" "wheel" "uinput" "input" "adbusers" "kvm"];
     openssh.authorizedKeys.keyFiles = [ ../id_rsa.pub ];
+    useDefaultShell = true;
   };
 
   xdg.portal = {
@@ -128,18 +129,25 @@
     duf
     python3
     wget
-    neovim
     pciutils
     sops
     powertop
     # Add man pages
     man-pages
     man-pages-posix
+    android-studio
   ];
+
+  programs.adb.enable = true;
 
   # Enabling zsh
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+  };
 
   # Setting up nh
   programs.nh = {
