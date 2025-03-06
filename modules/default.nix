@@ -36,9 +36,16 @@
   # enable auto updates
   system.autoUpgrade = {
     enable = true;
-    dates = "14:00";
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--print-build-logs"
+    ];
+    dates = "12:00";
     randomizedDelaySec = "45min";
   };
+
 
   # optimize nix store size
   nix.optimise.automatic = true;
