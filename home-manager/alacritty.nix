@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       font = {
-        size = 11;
+        size = 8;
         normal.family = "Iosevka";
       };
       env = {

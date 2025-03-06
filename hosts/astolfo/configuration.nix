@@ -9,7 +9,7 @@
   ];
 
   # Framework specific settings
-  
+
   # Handle BIOS updates
   services.fwupd.enable = true;
 

@@ -87,11 +87,11 @@
   };
   catppuccin.btop.enable = true;
 
-  programs.aerc.enable = true;
-  catppuccin.aerc = {
-    enable = true;
-    flavor = "mocha";
-  };
+  #programs.aerc.enable = true;
+  # catppuccin.aerc = {
+  #   enable = true;
+  #   flavor = "mocha";
+  # };
 
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -112,8 +112,13 @@
 
   home.sessionPath = ["$HOME/bin"];
   home.sessionVariables = {
-      TERMINAL = "alacritty";
+      TERMINAL = "kitty";
+      # alacritty does not support ligatures, and I have a few issue with nerd font icons
+      # TERMINAL = "alacritty";
   };
+  # systemd.user.sessionVariables = {
+  #     TERMINAL = "kitty";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
