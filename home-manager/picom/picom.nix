@@ -24,7 +24,7 @@
   ## opacity
   active-opacity = 0.90;
   inactive-opacity = 0.90;
-  frame-opacity = 0.00;
+  frame-opacity = 1.00;
   opacity-rule = [
     # disable transparency in fullscreen mode
     "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"

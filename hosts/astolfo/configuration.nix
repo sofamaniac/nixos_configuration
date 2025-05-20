@@ -8,6 +8,12 @@
     ./hardware-configuration.nix
   ];
 
+  # Adding devenv cachix
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
+
   # Framework specific settings
 
   # Handle BIOS updates
@@ -28,6 +34,17 @@
 
   # WIFI stability issues
   hardware.enableRedistributableFirmware = true;
+  networking.networkmanager.wifi.powersave = false;
+  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd.settings = {
+    IPv6 = {
+      Enabled = true;
+    };
+    Settings = {
+      AutoConnect = true;
+    };
+  };
+  #networking.networkmanager.wifi.backend = "iwd";
 
 
   boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-label/NIXOS";

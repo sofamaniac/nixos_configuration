@@ -54,6 +54,8 @@
     wineWowPackages.stable # wine with 32 and 64 bits support
     ruffle
 
+    devenv
+
     playerctl
     jq
     wget

@@ -15,10 +15,6 @@
       url = "github:sofamaniac/dotfiles";
       flake = false;
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-colors.url = "github:misterio77/nix-colors";
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
@@ -33,7 +29,6 @@
     self,
     nixpkgs,
     home-manager,
-    rust-overlay,
     alejandra,
     dotfiles,
     catppuccin,
@@ -57,10 +52,6 @@
           # Framework hardware support
           nixos-hardware.nixosModules.framework-13-7040-amd
           catppuccin.nixosModules.catppuccin
-          ({pkgs, ...}: {
-            nixpkgs.overlays = [rust-overlay.overlays.default];
-            environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
-          })
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }

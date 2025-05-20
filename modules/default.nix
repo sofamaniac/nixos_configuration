@@ -135,10 +135,16 @@
     # Add man pages
     man-pages
     man-pages-posix
-    android-studio
   ];
 
+  # Enables ADB and add udev rules
   programs.adb.enable = true;
+
+  # NTP stuff
+  services.automatic-timezoned.enable = true;
+  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+
+  programs.sway.enable = true;
 
   # Enabling zsh
   programs.zsh.enable = true;
@@ -172,6 +178,14 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.PermitRootLogin = "no";
+  };
+
+  # Setting up GPG agent
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+   enable = true;
+   # enableSSHSupport = true;
+   pinentryPackage = with pkgs; pinentry-gnome3;
   };
 
   # Open ports in the firewall.

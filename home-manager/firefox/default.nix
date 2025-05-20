@@ -10,7 +10,7 @@
         id = 0;
         name = "sofamaniac";
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           # recommended since Firefox will replace the symlink for the search configuration on every launch
           force = true;
         };

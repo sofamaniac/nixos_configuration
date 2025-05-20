@@ -19,6 +19,7 @@
           picom
           feh
           xdotool
+          autotiling
         ];
       };
     };
@@ -39,4 +40,8 @@
     };
   };
   catppuccin.sddm.enable = true;
+  
+  # adding autorandr for automatic display detection
+  services.autorandr.enable = true;
+
 }
